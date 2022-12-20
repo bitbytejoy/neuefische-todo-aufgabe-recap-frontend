@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../neuefische-todo-aufgabe-recap-frontend.iml" filepath="$PROJECT_DIR$/../neuefische-todo-aufgabe-recap-frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/neuefische-todo-aufgabe-recap-frontend.iml" filepath="$PROJECT_DIR$/.idea/neuefische-todo-aufgabe-recap-frontend.iml" />
     </modules>
   </component>
 </project>
