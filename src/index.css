@@ -1,13 +1,136 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: 'Roboto', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.TodoForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.TodoForm input {
+    all: unset;
+    box-sizing: border-box;
+    margin-bottom: .5rem;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding: .5rem 1rem;
+    width: 100%;
+}
+
+.TodoForm .button {
+    width: 100%;
+}
+
+.button {
+    all: unset;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid blue;
+    border-radius: 4px;
+    color: blue;
+    padding: .5rem 1rem;
+    text-align: center;
+}
+
+.button:active {
+    background-color: blue;
+    color: white;
+}
+
+.button.primary:active {
+    color: blue;
+    background: white;
+}
+
+.button.primary {
+    background-color: blue;
+    color: white;
+}
+
+.TodoItemBody {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.TodoItemBody > div {
+    width: 100%;
+    margin: .5rem 0;
+}
+
+.TodoItemBody p {
+    all: unset;
+}
+
+.TodoItemActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.TodoItemBody .TodoItemStatusWrap {
+    font-weight: 100;
+    margin-bottom: 0;
+}
+
+.TodoItemWrap {
+    box-sizing: content-box;
+    border-bottom: 1px solid black;
+    padding: 2rem 0;
+}
+
+.TodoItemWrap:last-child {
+    border:none;
+}
+
+.Page {
+    margin: auto;
+    width: 350px;
+    max-width: 95%;
+}
+
+.TodoListEmpty {
+    padding: 2rem;
+    text-align: center;
+    font-weight: 100;
+}
+
+.ConfirmationDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ConfirmationDialogCard {
+    padding: 2rem;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.ConfirmationDialogHeader {
+    position: relative;
+}
+
+.ConfirmationDialogClose {
+    position: absolute;
+    top: -3rem;
+    right: -1rem;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.ConfirmationDialogFooter {
+    text-align: right;
+}
+
+.ConfirmationDialogActions > button + button {
+    margin-left: 1rem;
 }

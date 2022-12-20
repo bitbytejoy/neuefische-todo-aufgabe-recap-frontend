@@ -26,20 +26,23 @@ export default function Root() {
   }, []);
 
   return (
-    <div>
+    <div className={"Page"}>
       <h1>Todo List</h1>
-      <TodoForm
-        todo={todo}
-        onSave={async (todo) => {
-          const response = await axios.post("/api/todos", todo);
-          setTodos([...todos, response.data]);
-          setTodo({
-            description: "",
-            status: TodoStatus.OPEN
-          })
-        }}
-        onChange={setTodo}
-      />
+
+      <div>
+        <TodoForm
+          todo={todo}
+          onSave={async (todo) => {
+            const response = await axios.post("/api/todos", todo);
+            setTodos([...todos, response.data]);
+            setTodo({
+              description: "",
+              status: TodoStatus.OPEN
+            })
+          }}
+          onChange={setTodo}
+        />
+      </div>
 
       <TodoList
         todos={todos}

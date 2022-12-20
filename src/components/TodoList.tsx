@@ -21,17 +21,22 @@ export default function TodoList ({
     <div>
       {todos.length
         ? todos.map(todo => (
-          <TodoItem
-            key={todo.id}
-            todo={todo}
-            onChange={onChange}
-            onSave={onSave}
-            onEdit={onEdit}
-            editing={todo.editing}
-            onDelete={onDelete}
-            onAdvance={onAdvance}
-          />
-        )) : <p>No todos found</p>}
+          <div key={todo.id} className={"TodoItemWrap"}>
+            <TodoItem
+              todo={todo}
+              onChange={onChange}
+              onSave={onSave}
+              onEdit={onEdit}
+              editing={todo.editing}
+              onDelete={onDelete}
+              onAdvance={onAdvance}
+            />
+          </div>
+        )) : (
+          <div className={"TodoListEmpty"}>
+            <p>No todos found</p>
+          </div>
+        )}
     </div>
   );
 }

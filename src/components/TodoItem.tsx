@@ -20,15 +20,36 @@ export default function TodoItem ({
   onAdvance: (todo: Todo) => void
 }) {
   return (
-    <div>
+    <div className={"TodoItem"}>
       {!editing ? (
-        <>
-          <p>{todo.description}</p>
-          <p>{todo.status}</p>
-          <button onClick={() => onEdit(todo)}>Edit</button>
-          {todo.status !== TodoStatus.DONE && <button onClick={() => onAdvance(todo)}>Advance</button>}
-          <button onClick={() => todo.id ? onDelete(todo.id) : null}>Delete</button>
-        </>
+        <div className={"TodoItemBody"}>
+          <div className={"TodoItemStatusWrap"}>
+            <p>{todo.status}</p>
+          </div>
+
+          <div>
+            <p>{todo.description}</p>
+          </div>
+
+          <div className={"TodoItemActions"}>
+            <button
+              className={"button"}
+              onClick={() => onEdit(todo)}
+            >Edit</button>
+
+            {todo.status !== TodoStatus.DONE && (
+              <button
+                className={"button"}
+                onClick={() => onAdvance(todo)}
+              >Advance</button>
+            )}
+
+            <button
+              className={"button"}
+              onClick={() => todo.id ? onDelete(todo.id) : null}
+            >Delete</button>
+          </div>
+        </div>
       ) : (
         <TodoForm
           todo={todo}

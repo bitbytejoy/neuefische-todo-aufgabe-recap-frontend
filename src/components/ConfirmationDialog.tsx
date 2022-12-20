@@ -8,11 +8,23 @@ export default function ConfirmationDialog ({
   onYes: () => void
 }) {
   return (
-    <div>
-      <span onClick={onClose}>&times;</span>
-      <h2>{title}</h2>
-      <button onClick={onClose}>No</button>
-      <button onClick={onYes}>Yes</button>
+    <div className={"ConfirmationDialog"}>
+      <div className={"ConfirmationDialogCard"}>
+        <div className={"ConfirmationDialogHeader"}>
+          <div className={"ConfirmationDialogClose"}>
+            <span onClick={onClose}>&times;</span>
+          </div>
+
+          <h2>{title}</h2>
+        </div>
+
+        <div className={"ConfirmationDialogFooter"}>
+          <div className={"ConfirmationDialogActions"}>
+            <button className={"button"} onClick={onClose}>No</button>
+            <button className={"button primary"} onClick={onYes}>Yes</button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

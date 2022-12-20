@@ -20,17 +20,20 @@ export default function TodoForm ({
   };
 
   return (
-    <form onSubmit={async e => {
-      e.preventDefault();
-      onSave(todo);
-    }}>
+    <form
+      className={"TodoForm"}
+      onSubmit={async e => {
+        e.preventDefault();
+        onSave(todo);
+      }}
+    >
       <input
         name={"description"}
         type={"text"}
         value={todo.description}
         onChange={change}
       />
-      <button>{saveText}</button>
+      <button className={"button primary"}>{saveText}</button>
     </form>
   );
 }
