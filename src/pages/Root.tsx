@@ -63,6 +63,19 @@ export default function Root() {
           }));
         }}
         onDelete={(id) => setDeletingId(id)}
+
+        onAdvance={(todo) => {
+          const updated = {
+            ...todo,
+            status: todo.status === TodoStatus.OPEN
+              ? TodoStatus.IN_PROGRESS
+              : TodoStatus.DONE
+          };
+
+          axios.put(`/api/todos/${todo.id}`, updated);
+
+          setTodos(todos.map(t => t.id === todo.id ? {...t, ...updated} : t));
+        }}
       />
 
       {deletingId && <ConfirmationDialog

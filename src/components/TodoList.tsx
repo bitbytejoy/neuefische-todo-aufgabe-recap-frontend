@@ -7,13 +7,15 @@ export default function TodoList ({
   onChange,
   onSave,
   onEdit,
-  onDelete
+  onDelete,
+  onAdvance
 } : {
   todos: TodoListTodo[],
   onChange: (todo: Todo) => void,
   onSave: (todo: Todo) => void,
   onEdit: (todo: Todo) => void,
-  onDelete: (id: string) => void
+  onDelete: (id: string) => void,
+  onAdvance: (todo: Todo) => void
 }) {
   return (
     <div>
@@ -27,6 +29,7 @@ export default function TodoList ({
             onEdit={onEdit}
             editing={todo.editing}
             onDelete={onDelete}
+            onAdvance={onAdvance}
           />
         )) : <p>No todos found</p>}
     </div>
