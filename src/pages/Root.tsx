@@ -29,7 +29,7 @@ export default function Root() {
     <div className={"Page"}>
       <h1>Todo List</h1>
 
-      <div>
+      <section>
         <TodoForm
           todo={todo}
           onSave={async (todo) => {
@@ -42,54 +42,56 @@ export default function Root() {
           }}
           onChange={setTodo}
         />
-      </div>
+      </section>
 
-      <TodoList
-        todos={todos}
-        onEdit={todo => setTodos(todos.map(t => {
-          return t.id === todo.id
-            ? {...t, editing: !t.editing}
-            : t
-        }))}
-        onChange={todo => setTodos(
-          todos.map(t => t.id === todo.id
-            ? { ...t, ...todo }
-            : t
-          )
-        )}
-        onSave={async todo => {
-          await axios.put(`/api/todos/${todo.id}`, todo);
-          setTodos(todos.map(t => {
+      <section>
+        <TodoList
+          todos={todos}
+          onEdit={todo => setTodos(todos.map(t => {
             return t.id === todo.id
-              ? {...t, editing: false}
+              ? {...t, editing: !t.editing}
               : t
-          }));
-        }}
-        onDelete={(id) => setDeletingId(id)}
+          }))}
+          onChange={todo => setTodos(
+            todos.map(t => t.id === todo.id
+              ? { ...t, ...todo }
+              : t
+            )
+          )}
+          onSave={async todo => {
+            await axios.put(`/api/todos/${todo.id}`, todo);
+            setTodos(todos.map(t => {
+              return t.id === todo.id
+                ? {...t, editing: false}
+                : t
+            }));
+          }}
+          onDelete={(id) => setDeletingId(id)}
 
-        onAdvance={(todo) => {
-          const updated = {
-            ...todo,
-            status: todo.status === TodoStatus.OPEN
-              ? TodoStatus.IN_PROGRESS
-              : TodoStatus.DONE
-          };
+          onAdvance={(todo) => {
+            const updated = {
+              ...todo,
+              status: todo.status === TodoStatus.OPEN
+                ? TodoStatus.IN_PROGRESS
+                : TodoStatus.DONE
+            };
 
-          axios.put(`/api/todos/${todo.id}`, updated);
+            axios.put(`/api/todos/${todo.id}`, updated);
 
-          setTodos(todos.map(t => t.id === todo.id ? {...t, ...updated} : t));
-        }}
-      />
+            setTodos(todos.map(t => t.id === todo.id ? {...t, ...updated} : t));
+          }}
+        />
 
-      {deletingId && <ConfirmationDialog
-        title={"Are your sure you want to delete this TODO?"}
-        onClose={() => setDeletingId(null)}
-        onYes={() => {
-          axios.delete("/api/todos/" + deletingId);
-          setTodos(todos.filter(todo => todo.id !== deletingId))
-          setDeletingId(null);
-        }}
-      />}
+        {deletingId && <ConfirmationDialog
+          title={"Are your sure you want to delete this TODO?"}
+          onClose={() => setDeletingId(null)}
+          onYes={() => {
+                  axios.delete("/api/todos/" + deletingId);
+                  setTodos(todos.filter(todo => todo.id !== deletingId))
+                  setDeletingId(null);
+                }}
+        />}
+      </section>
     </div>
   );
 }

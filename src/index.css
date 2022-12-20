@@ -97,6 +97,10 @@ body {
     max-width: 95%;
 }
 
+.Page section + section {
+    margin-top: 5rem;
+}
+
 .TodoListEmpty {
     padding: 2rem;
     text-align: center;
@@ -139,4 +143,55 @@ body {
 
 .ConfirmationDialogActions > button + button {
     margin-left: 1rem;
+}
+
+
+.TodoList .TodoListColumn {
+    display: none;
+}
+
+.TodoList .TodoListColumn:first-child {
+    display: initial;
+}
+
+@media (min-width: 945px) {
+    .Page {
+        width: 1024px;
+    }
+
+    .TodoList .TodoListColumn {
+        display: initial;
+    }
+
+    .TodoList {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+    }
+
+    .TodoList > div > div {
+        display: none;
+        border: none;
+        padding: 0;
+    }
+
+    .TodoList .show-open .OPEN {
+        display: block;
+    }
+
+    .TodoList .show-in_progress .IN_PROGRESS {
+        display: block;
+    }
+
+    .TodoList .show-done .DONE {
+        display: block;
+    }
+
+    .TodoListColumn {
+        width: 31%;
+    }
+
+    .TodoListColumn .TodoItemWrap {
+        margin-bottom: 2rem;
+    }
 }
