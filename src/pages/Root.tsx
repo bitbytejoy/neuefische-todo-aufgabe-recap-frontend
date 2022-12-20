@@ -5,6 +5,7 @@ import Todo from "../types/Todo";
 import axios from "axios";
 import TodoStatus from "../types/TodoStatus";
 import TodoListTodo from "../types/TodoListTodo";
+import ConfirmationDialog from "../components/ConfirmationDialog";
 
 export default function Root() {
   const [todos, setTodos] = useState<TodoListTodo[]>([]);
@@ -12,6 +13,7 @@ export default function Root() {
     description: "",
     status: TodoStatus.OPEN
   });
+  const [deletingId, setDeletingId] = useState<string|null>(null);
 
   useEffect(() => {
     (async () => {
@@ -38,6 +40,7 @@ export default function Root() {
         }}
         onChange={setTodo}
       />
+
       <TodoList
         todos={todos}
         onEdit={todo => setTodos(todos.map(t => {
@@ -59,11 +62,18 @@ export default function Root() {
               : t
           }));
         }}
-        onDelete={(id) => {
-          axios.delete("/api/todos/" + id);
-          setTodos(todos.filter(todo => todo.id !== id))
-        }}
+        onDelete={(id) => setDeletingId(id)}
       />
+
+      {deletingId && <ConfirmationDialog
+        title={"Are your sure you want to delete this TODO?"}
+        onClose={() => setDeletingId(null)}
+        onYes={() => {
+          axios.delete("/api/todos/" + deletingId);
+          setTodos(todos.filter(todo => todo.id !== deletingId))
+          setDeletingId(null);
+        }}
+      />}
     </div>
   );
 }
