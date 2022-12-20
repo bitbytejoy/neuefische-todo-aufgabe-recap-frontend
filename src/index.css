@@ -48,6 +48,12 @@ body {
     color: white;
 }
 
+.TodoItem {
+    border: 1px solid blue;
+    border-radius: 4px;
+    padding: 1rem;
+}
+
 .TodoItemBody {
     display: flex;
     align-items: center;
